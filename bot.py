@@ -6,12 +6,14 @@ import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+WORDS_FILE = "words.json"
+if not os.path.exists(WORDS_FILE):
+    with open(WORDS_FILE, "w", encoding="utf-8") as f:
+        json.dump({}, f)
 
 TOKEN = "8673774767:AAE0uRYCYr8-_Rb7-P2asgmYRAu2homCppg"
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
-
-WORDS_FILE = "words.json"
 
 users_state = {}
 user_test = {}
