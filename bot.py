@@ -21,10 +21,13 @@ bot_messages = {}
 
 
 def load_words():
-    if os.path.exists(WORDS_FILE):
+    if not os.path.exists(WORDS_FILE):
+        return {}
+    try:
         with open(WORDS_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
-    return {}
+    except (json.JSONDecodeError, ValueError):
+        return {}
 
 
 user_words = load_words()
